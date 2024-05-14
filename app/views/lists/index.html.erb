@@ -1,0 +1,64 @@
+<html>
+ <body>
+
+<p id="notice"></p>
+<h1>Books</h1>
+
+<table>
+<thead>
+  <tr>
+  <th>title</th>
+  <th>body</th>
+  </tr>
+
+<% @lists.each do |list| %>
+<tbody>
+  <td><%= list.title %></td>
+  <td><%= list.body %></td>
+  <td>
+  <%= link_to "show", list_path(list.id) %>
+  </td>
+  <td>
+  <%= link_to "Edit", edit_list_path(list.id) %>
+  </td>
+  <td>
+  <%= link_to "Destroy", destroy_list_path(list.id), method: :delete, "data-confirm" => "Are You sure?" %><br>
+  </td>
+</tbody>
+<% end %>
+</table>
+
+<h2>New book</h2>
+<% if @list.errors.any? %>
+<input name="utf8" type="hidden" value="✓">
+<input type="hidden" name="authenticity_token" value="on2DzDH/JFoq2efXJcP3JgzJlfL5EkLJ3bAjLkZESwPpVXVPVtiVVT0jXnbDedgH1a9cOBFcW3rHdI9/LjtdoA==">
+
+  <div id="error_explanation">
+  <h2><%= @list.errors.count %>errors prohibited this book from being saved:</h2>
+
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_with model: @list do |f| %>
+<div class="field">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+
+<div class="field">
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</div>
+
+<div class="actions">
+  <%= f.submit 'create book' %>
+</div>
+<% end %>
+  </form>
+ </body>
+</html>

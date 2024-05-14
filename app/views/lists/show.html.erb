@@ -1,0 +1,12 @@
+
+<h2>Title :</h2>
+
+<p><%= @list.title %></p>
+
+<h2>Body :</h2>
+
+<p><%= @list.body %></p><br>
+
+<a><%= link_to "Edit", edit_list_path(@list.id) %></a>
+|
+<a class="back" href="/lists" >Back</a>
